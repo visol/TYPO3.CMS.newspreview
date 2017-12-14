@@ -1,0 +1,27 @@
+{
+  "name": "georgringer/newspreview",
+  "type": "typo3-cms-extension",
+  "description": "This extensions changes the checkbox in news records for 'show in preview' into a select box.",
+  "authors": [
+    {
+      "name": "Georg Ringer",
+      "role": "Developer",
+      "homepage": "http://montagmorgen.at"
+    }
+  ],
+  "license": [
+    "GPL-2.0+"
+  ],
+  "require": {
+    "typo3/cms-core": "^7.6.13 || >=8.5.0 <9",
+    "typo3-ter/news": "~6.1"
+  },
+  "suggest": {
+    "typo3-ter/eventnews": "~2.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "GeorgRinger\\Newspreview\\": "Classes"
+    }
+  }
+}
