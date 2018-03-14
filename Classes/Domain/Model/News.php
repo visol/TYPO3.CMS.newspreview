@@ -10,7 +10,7 @@ class News extends \GeorgRinger\News\Domain\Model\News
      */
     public function getFalPreviewAndFull()
     {
-        return $this->getFalMediaPreviewsByType(1);
+        return $this->getFalMediaPreviewsByTypes([0, 1]);
     }
 
     /**
@@ -18,16 +18,23 @@ class News extends \GeorgRinger\News\Domain\Model\News
      */
     public function getFalPreviewOnly()
     {
-        return $this->getFalMediaPreviewsByType(2);
+        return $this->getFalMediaPreviewsByTypes([2]);
     }
 
-    protected function getFalMediaPreviewsByType($type)
+    /**
+     * Find all FAL media items with the given type array
+     *
+     * @param array $types
+     *
+     * @return array
+     */
+    protected function getFalMediaPreviewsByTypes($types)
     {
         $items = [];
         if ($this->getFalMedia()) {
             /** @var $mediaItem \GeorgRinger\News\Domain\Model\FileReference */
             foreach ($this->getFalMedia() as $mediaItem) {
-                if ((int)$mediaItem->getOriginalResource()->getProperty('showinpreview') === $type) {
+                if (in_array((int)$mediaItem->getOriginalResource()->getProperty('showinpreview'), $types)) {
                     $items[] = $mediaItem;
                 }
             }
